@@ -1,61 +1,33 @@
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+# ⚡ Footstep Power Generation System using Arduino
 
-// Constants
-//required variables
-int prev = 0, stepCount = 0;
-unsigned long previousMillis = 0;
-const long interval = 1000;  
-unsigned long currentMillis;
+## 📌 Overview
+This project generates electrical energy from human footsteps using piezoelectric sensors. The mechanical pressure applied on the surface is converted into electrical energy, which can be stored and used for small-scale applications.
 
-float v, vout, vin;  //variabls for calculating voltage
+## 🎯 Objective
+To develop a renewable and eco-friendly energy generation system using human movement.
 
-// Initialize the LCD, set the LCD address to 0x27 for a 16 chars and 2 line display
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+## ⚙️ Components Used
+- Piezoelectric sensors  
+- Arduino Uno  
+- Bridge Rectifier  
+- Capacitor  
+- Rechargeable Battery  
+- LED  
+- Connecting wires  
 
-void setup() {
-  // Initialize serial communication
-  Serial.begin(9600);
-  pinMode(8,OUTPUT);//led indication
-  // Initialize the LCD
-  lcd.init();
-  lcd.backlight();
+## 🔄 Working Principle
+When a person steps on the platform, pressure is applied on piezoelectric sensors. These sensors convert mechanical energy into electrical energy. The generated voltage is rectified and stored in a battery, which can be used to power small devices.
 
-  // Print a message to the LCD
-  lcd.print("FOOT STEP POWER");
-  lcd.setCursor(0, 1);
-  lcd.print("   GENERATOR");
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("STEP COUNT:");
-  lcd.setCursor(0, 1);
-  lcd.print("VOLTAGE:");
-}
+## 🚀 Applications
+- Railway stations  
+- Shopping malls  
+- Smart cities  
+- Street lighting systems  
 
-void loop() {
+## 📷 Project Image
+![Project Image](Footstep power generation.jpeg)
 
-  v = analogRead(A0);
-  currentMillis = millis();  //calculating time
-
-  if (v != 0 and (prev == 0)) {
-    stepCount += 1;         // calculating steps
-    digitalWrite(8, HIGH);  //led indication
-    lcd.setCursor(12, 0);
-    lcd.print(stepCount);
-  } else {
-    if (currentMillis - previousMillis >= 100) {
-      previousMillis = currentMillis;  //time in milliseconds
-      digitalWrite(8, LOW);
-    }
-  }
-  prev = v;
-  lcd.setCursor(9, 1);
-  //calculation of voltage
-  vout = (v * 5.00) / 1024.00;
-  vin = (vout / 0.040909)*100;
-
-  lcd.print(vin);
-  lcd.print("mV ");
-  delay(200);
-}
+## 💡 Future Enhancements
+- Increase efficiency using better sensors  
+- Integrate IoT for monitoring energy generation  
+- Use in large-scale public areas  
