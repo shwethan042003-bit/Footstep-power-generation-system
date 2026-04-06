@@ -31,6 +31,3 @@ When a person steps on the platform, pressure is applied on piezoelectric sensor
 - Increase efficiency using better sensors  
 - Integrate IoT for monitoring energy generation  
 - Use in large-scale public areas  
-
-## 👩‍💻 Author
-Shwetha N
